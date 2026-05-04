@@ -124,7 +124,7 @@ class OILM_Link_Rules {
 		?>
 		<div class="wrap">
 			<h1 class="wp-heading-inline">Internal Link Rules</h1>
-			<a href="?page=outpace-internal-link-manager&action=new" class="page-title-action">Add New</a>
+			<a href="?page=internal-link-manager&action=new" class="page-title-action">Add New</a>
 			<hr class="wp-header-end">
 			<form id="rules-filter" method="get">
 				<input type="hidden" name="page" value="<?php echo esc_attr( $_REQUEST['page'] ); ?>" />
@@ -267,7 +267,7 @@ class OILM_Link_Rules {
 
 		delete_transient( 'oilm_active_rules' );
 		
-		wp_redirect( admin_url( 'admin.php?page=outpace-internal-link-manager&message=saved' ) );
+		wp_redirect( admin_url( 'admin.php?page=internal-link-manager&message=saved' ) );
 		exit;
 	}
 
@@ -284,7 +284,7 @@ class OILM_Link_Rules {
 			delete_transient( 'oilm_active_rules' );
 		}
 		
-		wp_redirect( admin_url( 'admin.php?page=outpace-internal-link-manager&message=deleted' ) );
+		wp_redirect( admin_url( 'admin.php?page=internal-link-manager&message=deleted' ) );
 		exit;
 	}
 }

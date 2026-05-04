@@ -1,4 +1,4 @@
-=== Outpace Internal Link Manager ===
+=== Internal Link Manager ===
 Contributors: outpace
 Tags: internal links, seo, auto link
 Requires at least: 5.0
@@ -12,7 +12,7 @@ Automatically insert internal links into post/page content based on keyword-to-U
 
 == Description ==
 
-Outpace Internal Link Manager allows you to automate your internal linking strategy. By defining keyword-to-URL rules, this plugin will scan your content on the frontend and automatically link matching keywords, helping to improve your SEO without the need to manually edit every post.
+Internal Link Manager allows you to automate your internal linking strategy. By defining keyword-to-URL rules, this plugin will scan your content on the frontend and automatically link matching keywords, helping to improve your SEO without the need to manually edit every post.
 
 ### Features
 * Add, edit, and manage internal link rules from a clean admin UI.
@@ -25,7 +25,7 @@ Outpace Internal Link Manager allows you to automate your internal linking strat
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/outpace-internal-link-manager` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/internal-link-manager` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Use the Internal Links menu to configure your settings and create your first link rule.
 

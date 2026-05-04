@@ -2,7 +2,7 @@
 /**
  * Fired when the plugin is uninstalled.
  *
- * @package    Outpace_Internal_Link_Manager
+ * @package    Internal_Link_Manager
  */
 
 // If uninstall not called from WordPress, then exit.

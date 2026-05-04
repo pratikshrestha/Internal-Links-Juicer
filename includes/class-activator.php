@@ -52,9 +52,24 @@ class OILM_Activator {
 			'default_nofollow' => 0,
 			'debug_mode' => 0,
 			'remove_data_on_uninstall' => 0,
+			// New Advanced Options
+			'process_excerpts' => 0,
+			'process_comments' => 0,
+			'exclude_post_ids' => '',
+			'exclude_elements' => array(),
+			'enable_pluralization' => 0,
+			'first_occurrence_only' => 0,
 		);
 
-		add_option( 'oilm_settings', $default_settings );
+		// Only add if not exists to not overwrite existing user settings during update
+		if ( ! get_option( 'oilm_settings' ) ) {
+			add_option( 'oilm_settings', $default_settings );
+		} else {
+			// Merge new defaults into existing settings for upgrades
+			$existing = get_option( 'oilm_settings' );
+			$updated = wp_parse_args( $existing, $default_settings );
+			update_option( 'oilm_settings', $updated );
+		}
 	}
 
 }

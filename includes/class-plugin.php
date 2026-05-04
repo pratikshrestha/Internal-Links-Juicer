@@ -12,7 +12,7 @@ class OILM_Plugin {
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'outpace-internal-link-manager';
+		$this->plugin_name = 'internal-link-manager';
 
 		$this->load_dependencies();
 		$this->define_admin_hooks();
@@ -38,6 +38,7 @@ class OILM_Plugin {
 		add_action( 'admin_menu', array( $plugin_admin, 'add_plugin_admin_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_scripts' ) );
+		add_action( 'wp_dashboard_setup', array( $plugin_admin, 'register_dashboard_widget' ) );
 
 		$plugin_settings = new OILM_Settings();
 		add_action( 'admin_init', array( $plugin_settings, 'register_settings' ) );

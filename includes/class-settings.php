@@ -7,39 +7,39 @@ class OILM_Settings {
 
 		add_settings_section(
 			'oilm_general_settings',
-			__( 'General Settings', 'outpace-internal-link-manager' ),
+			__( 'General Settings', 'internal-link-manager' ),
 			array( $this, 'general_settings_cb' ),
 			'oilm_settings_page'
 		);
 
 		// Global toggle
-		add_settings_field( 'enable_plugin', __( 'Enable Plugin', 'outpace-internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'enable_plugin' ) );
+		add_settings_field( 'enable_plugin', __( 'Enable Plugin', 'internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'enable_plugin' ) );
 		
 		// Post types
-		add_settings_field( 'enabled_post_types', __( 'Enabled Post Types', 'outpace-internal-link-manager' ), array( $this, 'render_post_types' ), 'oilm_settings_page', 'oilm_general_settings' );
+		add_settings_field( 'enabled_post_types', __( 'Enabled Post Types', 'internal-link-manager' ), array( $this, 'render_post_types' ), 'oilm_settings_page', 'oilm_general_settings' );
 
 		// Limits
-		add_settings_field( 'global_max_links', __( 'Global Max Links per Page', 'outpace-internal-link-manager' ), array( $this, 'render_number' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'global_max_links', 'desc' => '0 for unlimited' ) );
-		add_settings_field( 'global_max_url_links', __( 'Global Max Links per Target URL per Page', 'outpace-internal-link-manager' ), array( $this, 'render_number' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'global_max_url_links', 'desc' => '0 for unlimited' ) );
+		add_settings_field( 'global_max_links', __( 'Global Max Links per Page', 'internal-link-manager' ), array( $this, 'render_number' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'global_max_links', 'desc' => '0 for unlimited' ) );
+		add_settings_field( 'global_max_url_links', __( 'Global Max Links per Target URL per Page', 'internal-link-manager' ), array( $this, 'render_number' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'global_max_url_links', 'desc' => '0 for unlimited' ) );
 
 		// Exclusions
-		add_settings_field( 'exclude_headings', __( 'Exclude Headings', 'outpace-internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'exclude_headings', 'desc' => 'Do not add links inside H1-H6 tags' ) );
-		add_settings_field( 'exclude_existing_links', __( 'Exclude Existing Links', 'outpace-internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'exclude_existing_links', 'desc' => 'Do not add links inside existing anchor tags' ) );
+		add_settings_field( 'exclude_headings', __( 'Exclude Headings', 'internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'exclude_headings', 'desc' => 'Do not add links inside H1-H6 tags' ) );
+		add_settings_field( 'exclude_existing_links', __( 'Exclude Existing Links', 'internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'exclude_existing_links', 'desc' => 'Do not add links inside existing anchor tags' ) );
 		
 		// Defaults
-		add_settings_field( 'default_new_tab', __( 'Open links in new tab default', 'outpace-internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'default_new_tab' ) );
-		add_settings_field( 'default_nofollow', __( 'Add nofollow default', 'outpace-internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'default_nofollow' ) );
+		add_settings_field( 'default_new_tab', __( 'Open links in new tab default', 'internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'default_new_tab' ) );
+		add_settings_field( 'default_nofollow', __( 'Add nofollow default', 'internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'default_nofollow' ) );
 
 		// Compat
-		add_settings_field( 'enable_elementor', __( 'Enable Elementor Compatibility', 'outpace-internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'enable_elementor' ) );
+		add_settings_field( 'enable_elementor', __( 'Enable Elementor Compatibility', 'internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'enable_elementor' ) );
 		
 		// System
-		add_settings_field( 'debug_mode', __( 'Debug Mode', 'outpace-internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'debug_mode' ) );
-		add_settings_field( 'remove_data_on_uninstall', __( 'Remove Data on Uninstall', 'outpace-internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'remove_data_on_uninstall', 'desc' => 'Delete all rules and settings if the plugin is uninstalled.' ) );
+		add_settings_field( 'debug_mode', __( 'Debug Mode', 'internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'debug_mode' ) );
+		add_settings_field( 'remove_data_on_uninstall', __( 'Remove Data on Uninstall', 'internal-link-manager' ), array( $this, 'render_checkbox' ), 'oilm_settings_page', 'oilm_general_settings', array( 'id' => 'remove_data_on_uninstall', 'desc' => 'Delete all rules and settings if the plugin is uninstalled.' ) );
 	}
 
 	public function general_settings_cb() {
-		echo '<p>' . __( 'Configure the global settings for internal linking.', 'outpace-internal-link-manager' ) . '</p>';
+		echo '<p>' . __( 'Configure the global settings for internal linking.', 'internal-link-manager' ) . '</p>';
 	}
 
 	public function render_checkbox( $args ) {

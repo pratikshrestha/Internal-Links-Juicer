@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Outpace Internal Link Manager
+ * Plugin Name:       Internal Link Manager
  * Plugin URI:        https://outpace.com/internal-link-manager
  * Description:       Automatically insert internal links into post/page content based on keyword-to-URL rules defined in the admin.
  * Version:           1.0.0
@@ -8,7 +8,7 @@
  * Author URI:        https://outpace.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       outpace-internal-link-manager
+ * Text Domain:       internal-link-manager
  * Domain Path:       /languages
  */
 
