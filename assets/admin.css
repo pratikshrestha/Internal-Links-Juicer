@@ -1,0 +1,28 @@
+/* Outpace Internal Link Manager Admin Styles */
+
+.oilm-status-active {
+	color: #46b450;
+	font-weight: 600;
+}
+
+.oilm-status-inactive {
+	color: #dc3232;
+	font-weight: 600;
+}
+
+table.wp-list-table th.column-stats {
+	width: 15%;
+}
+
+table.wp-list-table th.column-is_active {
+	width: 10%;
+}
+
+table.wp-list-table th.column-priority {
+	width: 10%;
+}
+
+.form-table fieldset label {
+	margin-bottom: 5px;
+	display: inline-block;
+}

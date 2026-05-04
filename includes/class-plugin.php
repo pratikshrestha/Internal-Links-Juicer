@@ -1,0 +1,83 @@
+<?php
+
+class OILM_Plugin {
+
+	protected $loader;
+	protected $plugin_name;
+	protected $version;
+
+	public function __construct() {
+		if ( defined( 'OILM_VERSION' ) ) {
+			$this->version = OILM_VERSION;
+		} else {
+			$this->version = '1.0.0';
+		}
+		$this->plugin_name = 'outpace-internal-link-manager';
+
+		$this->load_dependencies();
+		$this->define_admin_hooks();
+		$this->define_public_hooks();
+	}
+
+	private function load_dependencies() {
+		require_once OILM_PLUGIN_DIR . 'includes/class-admin.php';
+		require_once OILM_PLUGIN_DIR . 'includes/class-settings.php';
+		
+		if ( is_admin() ) {
+			require_once OILM_PLUGIN_DIR . 'includes/class-link-rules.php';
+			require_once OILM_PLUGIN_DIR . 'includes/class-reports.php';
+		}
+
+		require_once OILM_PLUGIN_DIR . 'includes/class-content-processor.php';
+		require_once OILM_PLUGIN_DIR . 'includes/class-elementor-compat.php';
+		require_once OILM_PLUGIN_DIR . 'includes/class-woocommerce-compat.php';
+	}
+
+	private function define_admin_hooks() {
+		$plugin_admin = new OILM_Admin( $this->get_plugin_name(), $this->get_version() );
+		add_action( 'admin_menu', array( $plugin_admin, 'add_plugin_admin_menu' ) );
+		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_scripts' ) );
+
+		$plugin_settings = new OILM_Settings();
+		add_action( 'admin_init', array( $plugin_settings, 'register_settings' ) );
+
+		if ( is_admin() ) {
+			$plugin_rules = new OILM_Link_Rules();
+			add_action( 'admin_post_oilm_save_rule', array( $plugin_rules, 'save_rule' ) );
+			add_action( 'admin_post_oilm_delete_rule', array( $plugin_rules, 'delete_rule' ) );
+		}
+	}
+
+	private function define_public_hooks() {
+		$settings = get_option('oilm_settings');
+		$is_enabled = isset($settings['enable_plugin']) ? $settings['enable_plugin'] : 1;
+
+		if ( ! $is_enabled ) {
+			return;
+		}
+
+		$processor = new OILM_Content_Processor();
+		
+		// Priority 99 to ensure it runs late after most shortcodes and formatting
+		add_filter( 'the_content', array( $processor, 'process_content' ), 99 );
+
+		$elementor_compat = new OILM_Elementor_Compat( $processor );
+		$elementor_compat->init();
+
+		$wc_compat = new OILM_WooCommerce_Compat( $processor );
+		$wc_compat->init();
+	}
+
+	public function run() {
+		// Execution starts via hooks
+	}
+
+	public function get_plugin_name() {
+		return $this->plugin_name;
+	}
+
+	public function get_version() {
+		return $this->version;
+	}
+}
