@@ -122,7 +122,7 @@ class OILM_Link_Rules {
 		$list_table = new OILM_Rules_List_Table();
 		$list_table->prepare_items();
 		?>
-		<div class="wrap">
+		<div class="wrap oilm-modern-wrap">
 			<h1 class="wp-heading-inline">Internal Link Rules</h1>
 			<a href="?page=internal-link-manager&action=new" class="page-title-action">Add New</a>
 			<hr class="wp-header-end">
@@ -165,7 +165,7 @@ class OILM_Link_Rules {
 		}
 
 		?>
-		<div class="wrap">
+		<div class="wrap oilm-modern-wrap">
 			<h1><?php echo $rule['id'] ? 'Edit Rule' : 'Add New Rule'; ?></h1>
 			<form method="post" action="<?php echo admin_url( 'admin-post.php' ); ?>">
 				<input type="hidden" name="action" value="oilm_save_rule">
