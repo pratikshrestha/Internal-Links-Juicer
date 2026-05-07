@@ -315,31 +315,42 @@ class OILM_Link_Rules {
 			wp_send_json_success( array() );
 		}
 
-		if ( ! function_exists( 'wp_link_query' ) ) {
-			require_once ABSPATH . 'wp-admin/includes/internal-linking.php';
-		}
-
-		$results = wp_link_query(
+		$links = array();
+		$search_query = new WP_Query(
 			array(
-				's'         => $query,
-				'post_type' => $this->get_searchable_post_types(),
+				's'                   => $query,
+				'post_type'           => $this->get_searchable_post_types(),
+				'post_status'         => array( 'publish', 'private' ),
+				'posts_per_page'      => 20,
+				'orderby'             => 'relevance',
+				'no_found_rows'       => true,
+				'ignore_sticky_posts' => true,
 			)
 		);
 
-		$links = array();
+		foreach ( $search_query->posts as $post ) {
+			$permalink = get_permalink( $post );
 
-		foreach ( $results as $result ) {
-			if ( empty( $result['permalink'] ) ) {
+			if ( ! $permalink ) {
 				continue;
 			}
 
+			$post_type = get_post_type_object( $post->post_type );
+			$post_type_label = $post_type ? $post_type->labels->singular_name : $post->post_type;
+
 			$links[] = array(
-				'id'    => esc_url_raw( $result['permalink'] ),
-				'text'  => html_entity_decode( $result['title'], ENT_QUOTES, get_bloginfo( 'charset' ) ),
-				'url'   => esc_url_raw( $result['permalink'] ),
-				'info'  => isset( $result['info'] ) ? sanitize_text_field( $result['info'] ) : '',
+				'id'   => esc_url_raw( $permalink ),
+				'text' => html_entity_decode( get_the_title( $post ), ENT_QUOTES, get_bloginfo( 'charset' ) ),
+				'url'  => esc_url_raw( $permalink ),
+				'info' => sprintf(
+					'%1$s - %2$s',
+					$post_type_label,
+					get_the_date( '', $post )
+				),
 			);
 		}
+
+		wp_reset_postdata();
 
 		wp_send_json_success( $links );
 	}
