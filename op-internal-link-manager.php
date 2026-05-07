@@ -3,7 +3,7 @@
  * Plugin Name:       OP Internal Link Manager
  * Plugin URI:        https://outpace.com
  * Description:       Automatically insert internal links into post/page content based on keyword-to-URL rules defined in the admin.
- * Version:           1.0.4
+ * Version:           1.0.5
  * Requires Plugins:
  * Requires at least: 5.0
  * Requires PHP:      8.0
@@ -27,12 +27,13 @@ if ( ! defined( 'WPINC' ) ) {
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
  */
-define( 'OILM_VERSION', '1.0.4' );
+define( 'OILM_VERSION', '1.0.5' );
 define( 'OILM_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'OILM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'OILM_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'OILM_GITHUB_OWNER', 'Ritesh100' );
 define( 'OILM_GITHUB_REPO', 'Internal-Links-Juicer' );
+define( 'OILM_GITHUB_BRANCH', 'main' );
 
 /**
  * The code that runs during plugin activation.
