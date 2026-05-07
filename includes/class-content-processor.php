@@ -122,6 +122,7 @@ class OILM_Content_Processor {
 		$global_url_max = isset( $this->settings['global_max_url_links'] ) ? absint( $this->settings['global_max_url_links'] ) : 0;
 		$first_occurrence_only = isset( $this->settings['first_occurrence_only'] ) && $this->settings['first_occurrence_only'];
 		$enable_pluralization = isset( $this->settings['enable_pluralization'] ) && $this->settings['enable_pluralization'];
+		$link_css_class = $this->get_link_css_class();
 
 		$updates_made = false;
 		$rules_hit = array(); // Track which rules were used for stats
@@ -203,8 +204,9 @@ class OILM_Content_Processor {
 						
 						$rel = !empty($rel_arr) ? ' rel="' . implode(' ', $rel_arr) . '"' : '';
 						$title = !empty($rule['title_attr']) ? ' title="' . esc_attr($rule['title_attr']) . '"' : '';
+						$class = $link_css_class ? ' class="' . esc_attr( $link_css_class ) . '"' : '';
 						
-						$link_html = '<a href="' . esc_url($rule['url']) . '"' . $target . $rel . $title . '>' . htmlspecialchars($matched_text, ENT_QUOTES, 'UTF-8') . '</a>';
+						$link_html = '<a href="' . esc_url($rule['url']) . '"' . $class . $target . $rel . $title . '>' . htmlspecialchars($matched_text, ENT_QUOTES, 'UTF-8') . '</a>';
 
 						// Replace first occurrence only per node to maintain limits
 						$new_text = preg_replace( $pattern, $link_html, $text, 1 );
@@ -255,6 +257,15 @@ class OILM_Content_Processor {
 		}
 
 		return $content;
+	}
+
+	private function get_link_css_class() {
+		$class_value = isset( $this->settings['link_css_class'] ) ? $this->settings['link_css_class'] : 'op-internal-link';
+		$class_value = is_string( $class_value ) ? $class_value : '';
+		$classes = preg_split( '/\s+/', trim( $class_value ) );
+		$classes = array_filter( array_map( 'sanitize_html_class', $classes ) );
+
+		return implode( ' ', $classes );
 	}
 
 	private function update_stats( $rules_hit ) {
