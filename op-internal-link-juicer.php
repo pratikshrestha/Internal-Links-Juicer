@@ -1,14 +1,14 @@
 <?php
 /**
- * Plugin Name:       Internal Link Manager
+ * Plugin Name:      OP OP Internal Link Juicer
  * Plugin URI:        https://outpace.com
  * Description:       Automatically insert internal links into post/page content based on keyword-to-URL rules defined in the admin.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Ritesh OutpaceSeo
  * Author URI:        https://github.com/Ritesh100/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       internal-link-manager
+ * Text Domain:       op-internal-link-juicer
  * Domain Path:       /languages
  */
 
@@ -21,7 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
  */
-define( 'OILM_VERSION', '1.0.0' );
+define( 'OILM_VERSION', '1.0.1' );
 define( 'OILM_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'OILM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'OILM_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
@@ -39,6 +39,7 @@ function activate_outpace_internal_link_manager() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-deactivator.php
  */
+
 function deactivate_outpace_internal_link_manager() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-deactivator.php';
 	OILM_Deactivator::deactivate();
